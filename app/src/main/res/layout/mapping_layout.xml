@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="300dp"
+    android:layout_height="300dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/bg" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="23dp"
+        android:layout_y="19dp"
+        android:fontFamily="@font/sophia_script"
+        android:rotation="-15"
+        android:text="Love"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="191dp"
+        android:layout_height="191dp"
+        android:layout_x="54dp"
+        android:layout_y="54dp"
+        app:srcCompat="@drawable/abc" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="191dp"
+        android:layout_height="191dp"
+        android:layout_x="54dp"
+        android:layout_y="54dp"
+        app:srcCompat="@drawable/boarder" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="59dp"
+        android:layout_y="26dp"
+        android:fontFamily="@font/sophia_script"
+        android:padding="10dp"
+        android:text="you"
+        android:textColor="#FA5672"
+        android:textSize="60sp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="66dp"
+        android:layout_height="59dp"
+        android:layout_x="198dp"
+        android:layout_y="35dp"
+        android:rotation="0"
+        app:srcCompat="@drawable/heart_1" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="27dp"
+        android:layout_height="23dp"
+        android:layout_x="220dp"
+        android:layout_y="98dp"
+        app:srcCompat="@drawable/heart_2" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="30dp"
+        android:layout_height="28dp"
+        android:layout_x="40dp"
+        android:layout_y="187dp"
+        app:srcCompat="@drawable/heart_4" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="51dp"
+        android:layout_height="45dp"
+        android:layout_x="41dp"
+        android:layout_y="218dp"
+        app:srcCompat="@drawable/heart_3" />
+</AbsoluteLayout>
