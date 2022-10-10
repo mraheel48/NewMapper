@@ -1,8 +1,8 @@
 package com.example.newmapper.dataModel
 
-import com.google.gson.annotations.SerializedName
+import com.fasterxml.jackson.annotation.JsonProperty
 
 data class MapperModel (
-    @SerializedName("AbsoluteLayout")
+    @JsonProperty("AbsoluteLayout")
     val absoluteLayout: AbsoluteLayout? = null
 )

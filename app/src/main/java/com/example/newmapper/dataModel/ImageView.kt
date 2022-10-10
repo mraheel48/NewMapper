@@ -1,26 +1,26 @@
 package com.example.newmapper.dataModel
 
-import com.google.gson.annotations.SerializedName
+import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ImageView (
-    @SerializedName("_android:id")
+    @JsonProperty("_android:id")
     val androidID: String? = null,
 
-    @SerializedName("_android:layout_width")
+    @JsonProperty("_android:layout_width")
     val androidLayoutWidth: String? = null,
 
-    @SerializedName("_android:layout_height")
+    @JsonProperty("_android:layout_height")
     val androidLayoutHeight: String? = null,
 
-    @SerializedName("_app:srcCompat")
+    @JsonProperty("_app:srcCompat")
     val appSrcCompat: String? = null,
 
-    @SerializedName("_android:layout_x")
+    @JsonProperty("_android:layout_x")
     val androidLayoutX: String? = null,
 
-    @SerializedName("_android:layout_y")
+    @JsonProperty("_android:layout_y")
     val androidLayoutY: String? = null,
 
-    @SerializedName("_android:rotation")
+    @JsonProperty("_android:rotation")
     val androidRotation: String? = null
 )

@@ -7,7 +7,9 @@ import com.example.newmapper.dataModel.ImageView
 import com.example.newmapper.dataModel.MapperModel
 import com.example.newmapper.dataModel.TextView
 import com.example.newmapper.databinding.ActivityMainBinding
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.Gson
+import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
@@ -41,33 +43,45 @@ class MainActivity : AppCompatActivity() {
 
             val jsonFile = loadJSONFromAsset("2.json")
 
-            val userObject: MapperModel = Gson().fromJson(jsonFile, MapperModel::class.java)
+            if (jsonFile != null) {
 
-            viewBoxWidth =
-                userObject.absoluteLayout?.androidLayoutWidth.toString().replace("dp", "").toInt()
-            viewBoxHeight =
-                userObject.absoluteLayout?.androidLayoutHeight.toString().replace("dp", "").toInt()
+                Log.d("myJsonObject", "Json not null")
 
-            userObject.absoluteLayout?.textView?.forEach {
-                textArray.add(it)
-            }
+                val obj = JSONObject(jsonFile)
+                val om = ObjectMapper()
+                val root: MapperModel = om.readValue(obj.toString(), MapperModel::class.java)
 
-            userObject.absoluteLayout?.imageView?.forEach {
-                imageArray.add(it)
-            }
+                if (root.absoluteLayout != null) {
 
-            screenFactorValues = defaultScreenWidth.toDouble() / viewBoxWidth.toDouble()
+                    screenFactorValues =
+                        defaultScreenWidth / root.absoluteLayout.androidLayoutWidth!!.replace(
+                            "dp",
+                            ""
+                        ).toDouble()
 
-            Log.d(
-                "myTag",
-                " $screenFactorValues"
-            )
+                    if (root.absoluteLayout!!.imageView != null) {
+                        root.absoluteLayout!!.imageView!!.forEachIndexed { index, imageView ->
+                            imageArray.add(index, imageView)
+                        }
+                    }
+                    if (root.absoluteLayout!!.textView != null) {
+                        root.absoluteLayout?.textView?.forEachIndexed { index, textview ->
+                            textArray.add(index, textview)
+                        }
+                    }
 
-            if (imageArray.isNotEmpty()) {
-                Log.d("myMapper", "list is not null")
-                loadImageFormMap()
+                }
+
+                if (imageArray.size > 0) {
+                    Log.d("myJsonObject", "Json is not  null")
+                }
+
+                if (textArray.size > 0) {
+                    Log.d("myJsonObject", "Json is not  null")
+                }
+
             } else {
-                Log.d("myMapper", "list is null")
+                Log.d("myJsonObject", "Json is null")
             }
 
         }

@@ -1,23 +1,23 @@
 package com.example.newmapper.dataModel
 
-import com.google.gson.annotations.SerializedName
+import com.fasterxml.jackson.annotation.JsonProperty
 
 data class AbsoluteLayout(
-    @SerializedName("ImageView")
+    @JsonProperty("ImageView")
     val imageView: List<ImageView>? = null,
 
-    @SerializedName("TextView")
+    @JsonProperty("TextView")
     val textView: List<TextView>? = null,
 
-    @SerializedName("_xmlns:android")
+    @JsonProperty("_xmlns:android")
     val xmlnsAndroid: String? = null,
 
-    @SerializedName("_xmlns:app")
+    @JsonProperty("_xmlns:app")
     val xmlnsApp: String? = null,
 
-    @SerializedName("_android:layout_width")
+    @JsonProperty("_android:layout_width")
     val androidLayoutWidth: String? = null,
 
-    @SerializedName("_android:layout_height")
+    @JsonProperty("_android:layout_height")
     val androidLayoutHeight: String? = null
 )

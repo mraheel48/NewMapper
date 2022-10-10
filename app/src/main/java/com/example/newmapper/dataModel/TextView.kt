@@ -1,39 +1,39 @@
 package com.example.newmapper.dataModel
 
-import com.google.gson.annotations.SerializedName
+import com.fasterxml.jackson.annotation.JsonProperty
 
 data class TextView (
-    @SerializedName("_android:id")
+    @JsonProperty("_android:id")
     val androidID: String? = null,
 
-    @SerializedName("_android:layout_width")
+    @JsonProperty("_android:layout_width")
     val androidLayoutWidth: String? = null,
 
-    @SerializedName("_android:layout_height")
+    @JsonProperty("_android:layout_height")
     val androidLayoutHeight: String? = null,
 
-    @SerializedName("_android:layout_x")
+    @JsonProperty("_android:layout_x")
     val androidLayoutX: String? = null,
 
-    @SerializedName("_android:layout_y")
+    @JsonProperty("_android:layout_y")
     val androidLayoutY: String? = null,
 
-    @SerializedName("_android:fontFamily")
+    @JsonProperty("_android:fontFamily")
     val androidFontFamily: String? = null,
 
-    @SerializedName("_android:rotation")
+    @JsonProperty("_android:rotation")
     val androidRotation: String? = null,
 
-    @SerializedName("_android:text")
+    @JsonProperty("_android:text")
     val androidText: String? = null,
 
-    @SerializedName("_android:textColor")
+    @JsonProperty("_android:textColor")
     val androidTextColor: String? = null,
 
-    @SerializedName("_android:textSize")
+    @JsonProperty("_android:textSize")
     val androidTextSize: String? = null,
 
-    @SerializedName("_android:padding")
+    @JsonProperty("_android:padding")
     val androidPadding: String? = null
 )
 
