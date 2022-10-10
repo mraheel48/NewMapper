@@ -63,8 +63,23 @@ class MainActivity : AppCompatActivity() {
                 " $screenFactorValues"
             )
 
+            if (imageArray.isNotEmpty()) {
+                Log.d("myMapper", "list is not null")
+                loadImageFormMap()
+            } else {
+                Log.d("myMapper", "list is null")
+            }
+
         }
 
+    }
+
+
+    private fun loadImageFormMap() {
+        imageArray.forEachIndexed { index, imageView ->
+
+
+        }
     }
 
     //*******************This method return the Json String *********************//
