@@ -2,7 +2,7 @@ package com.example.newmapper.dataModel
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class ImageView (
+data class ImageView(
     @JsonProperty("_android:id")
     val androidID: String? = null,
 
@@ -22,5 +22,8 @@ data class ImageView (
     val androidLayoutY: String? = null,
 
     @JsonProperty("_android:rotation")
-    val androidRotation: String? = null
+    val androidRotation: String? = null,
+
+    @JsonProperty("_android:tag")
+    val androidTag: String? = null
 )

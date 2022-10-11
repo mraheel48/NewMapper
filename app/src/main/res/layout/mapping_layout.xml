@@ -17,40 +17,16 @@
         android:layout_height="191dp"
         android:layout_x="54dp"
         android:layout_y="54dp"
+        android:tag="img"
         app:srcCompat="@drawable/abc" />
 
     <ImageView
-
         android:id="@+id/imageView8"
         android:layout_width="191dp"
         android:layout_height="191dp"
         android:layout_x="54dp"
         android:layout_y="54dp"
         app:srcCompat="@drawable/boarder" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="15dp"
-        android:layout_y="18dp"
-        android:fontFamily="@font/sophia_script"
-        android:rotation="-15"
-        android:text="Love"
-        android:textColor="#FFFFFF"
-        android:textSize="60sp" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="59dp"
-        android:layout_y="26dp"
-        android:fontFamily="@font/sophia_script"
-        android:padding="10dp"
-        android:text="you"
-        android:textColor="#FA5672"
-        android:textSize="60sp" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -84,4 +60,29 @@
         android:layout_x="41dp"
         android:layout_y="218dp"
         app:srcCompat="@drawable/heart_3" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="66dp"
+        android:layout_y="35dp"
+        android:fontFamily="@font/sophia_script"
+        android:text="you"
+        android:textAlignment="center"
+        android:textColor="#FA5672"
+        android:textSize="60sp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="14dp"
+        android:layout_y="13dp"
+        android:fontFamily="@font/sophia_script"
+        android:rotation="-22"
+        android:text="Love"
+        android:textColor="#FFFFFF"
+        android:textSize="60sp" />
+
 </AbsoluteLayout>

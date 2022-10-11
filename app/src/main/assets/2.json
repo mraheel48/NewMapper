@@ -65,7 +65,7 @@
         "_android:layout_x": "23dp",
         "_android:layout_y": "19dp",
         "_android:fontFamily": "@font/sophia_script",
-        "_android:rotation": "-15",
+        "_android:rotation": "-22",
         "_android:text": "Love",
         "_android:textColor": "#FFFFFF",
         "_android:textSize": "60sp"

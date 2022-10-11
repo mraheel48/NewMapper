@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">NewMapper</string>
+    <string name="read_data">Read Data</string>
 </resources>

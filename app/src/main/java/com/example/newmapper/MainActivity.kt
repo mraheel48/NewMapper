@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainBinding.root)
 
         mainBinding.root.post {
-            Log.e("myScreenWidth", "${mainBinding.root.width}")
+            Log.e("myScreenWidth", "${mainBinding.root.height}")
             defaultScreenWidth = mainBinding.root.width
             viewBoxWidth = defaultScreenWidth
             viewBoxHeight = defaultScreenWidth
