@@ -2,7 +2,7 @@ package com.example.newmapper.dataModel
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class TextView (
+data class TextView(
     @JsonProperty("_android:id")
     val androidID: String? = null,
 
@@ -27,11 +27,29 @@ data class TextView (
     @JsonProperty("_android:text")
     val androidText: String? = null,
 
+    @JsonProperty("_android:textAlignment")
+    val androidTextAlignment: String? = null,
+
     @JsonProperty("_android:textColor")
     val androidTextColor: String? = null,
 
     @JsonProperty("_android:textSize")
     val androidTextSize: String? = null,
 
+    @JsonProperty("_android:shadowColor")
+    val androidShadowColor: String? = null,
+
+    @JsonProperty("_android:shadowDx")
+    val androidShadowDx: String? = null,
+
+    @JsonProperty("_android:shadowDy")
+    val androidShadowDy: String? = null,
+
+    @JsonProperty("_android:shadowRadius")
+    val androidShadowRadius: String? = null,
+
+    @JsonProperty("_android:alpha")
+    val androidAlpha: String? = null
 )
+
 

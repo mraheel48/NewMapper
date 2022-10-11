@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding.btnRead.setOnClickListener {
 
-            val jsonFile = loadJSONFromAsset("2.json")
+            val jsonFile = loadJSONFromAsset("3.json")
 
             if (jsonFile != null) {
 
@@ -219,7 +219,53 @@ class MainActivity : AppCompatActivity() {
                 modelTextRotation.toFloat()
             }
 
-            Log.d("myTextValues", "$textViewRotation")
+            val modelTextShadowColor = "${textView.androidShadowColor}"
+            val textViewShadowColor: String? = if (modelTextShadowColor == "null") {
+                null
+            } else {
+                "${textView.androidShadowColor}"
+            }
+
+            textViewShadowColor?.let {
+
+                val modelTextShadowDx = "${textView.androidShadowDx}"
+                val textViewShadowDx: Float = if (modelTextShadowDx == "null") {
+                    0f
+                } else {
+                    modelTextShadowDx.toFloat()
+                }
+
+                val modelTextShadowDy = "${textView.androidShadowDy}"
+                val textViewShadowDy: Float = if (modelTextShadowDy == "null") {
+                    3f
+                } else {
+                    modelTextShadowDy.toFloat()
+                }
+
+                val modelTextShadowRadius = "${textView.androidShadowRadius}"
+                val textViewShadowRadius: Float = if (modelTextShadowRadius == "null") {
+                    3f
+                } else {
+                    modelTextShadowRadius.toFloat()
+                }
+
+                newText.setShadowLayer(
+                    textViewShadowRadius,
+                    textViewShadowDx,
+                    textViewShadowDy,
+                    Color.parseColor(it)
+                )
+
+            }
+
+            val modelTextAlpha = "${textView.androidAlpha}"
+            val textViewAlpha: Float = if (modelTextAlpha == "null") {
+                1f
+            } else {
+                modelTextAlpha.toFloat()
+            }
+
+            Log.d("myTextValues", "$textViewAlpha")
 
             newText.text = textViewName
 
@@ -239,6 +285,8 @@ class MainActivity : AppCompatActivity() {
             newText.y = (textViewY * screenFactorValues).toFloat()
 
             newText.rotation = textViewRotation
+
+            newText.alpha = textViewAlpha
 
             mainBinding.mainLayout.addView(newText)
 
