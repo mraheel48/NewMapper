@@ -1,7 +1,10 @@
 package com.example.newmapper
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -84,6 +87,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (textArray.size > 0) {
                     Log.d("myJsonObject", "Json is not  null")
+                    loadTextFormMap()
                 }
 
             } else {
@@ -95,8 +99,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadImageFormMap() {
-
-        imageArray.forEachIndexed { index, imageView ->
+        imageArray.forEachIndexed { _, imageView ->
 
             val newImage = android.widget.ImageView(this@MainActivity)
 
@@ -144,7 +147,7 @@ class MainActivity : AppCompatActivity() {
                 (imageViewHeight * screenFactorValues).roundToInt()
             )
 
-            Log.d("myImagePath", "${imageViewHeight}")
+            Log.d("myImagePath", "$imageViewHeight")
 
             Glide.with(this)
                 .load(imagePath)
@@ -153,9 +156,91 @@ class MainActivity : AppCompatActivity() {
 
             newImage.x = (imageViewX * screenFactorValues).toFloat()
             newImage.y = (imageViewY * screenFactorValues).toFloat()
+
             newImage.layoutParams = lp
 
-            mainBinding.mainLayout.addView(newImage, index)
+            mainBinding.mainLayout.addView(newImage)
+
+        }
+    }
+
+    private fun loadTextFormMap() {
+
+        textArray.forEachIndexed { _, textView ->
+
+            val newText = android.widget.TextView(this@MainActivity)
+
+            val modelTextName = "${textView.androidText}"
+            val textViewName: String = if (modelTextName == "null") {
+                "${getText(R.string.app_name)}"
+            } else {
+                modelTextName
+            }
+
+            val modelTextFont = "${textView.androidFontFamily}"
+            val textViewFontName: String? = if (modelTextFont == "null") {
+                null
+            } else {
+                "${modelTextFont.replace("@font/", "")}.ttf"
+            }
+
+            val modelTextColor = "${textView.androidTextColor}"
+            val textViewColor: String? = if (modelTextColor == "null") {
+                null
+            } else {
+                modelTextColor
+            }
+
+            val modelTextSize = "${textView.androidTextSize}"
+            val textViewSize: Float = if (modelTextSize == "null") {
+                20f
+            } else {
+                modelTextSize.replace("sp", "").toFloat()
+            }
+
+            val modelTextX = "${textView.androidLayoutX}"
+            val textViewX: Float = if (modelTextX == "null") {
+                0f
+            } else {
+                modelTextX.replace("dp", "").toFloat()
+            }
+
+            val modelTextY = "${textView.androidLayoutY}"
+            val textViewY: Float = if (modelTextY == "null") {
+                0f
+            } else {
+                modelTextY.replace("dp", "").toFloat()
+            }
+
+            val modelTextRotation = "${textView.androidRotation}"
+            val textViewRotation: Float = if (modelTextRotation == "null") {
+                0f
+            } else {
+                modelTextRotation.toFloat()
+            }
+
+            Log.d("myTextValues", "$textViewRotation")
+
+            newText.text = textViewName
+
+            textViewFontName?.let {
+                val typeface = Typeface.createFromAsset(assets, "font/${it}")
+                newText.typeface = typeface
+            }
+
+            textViewColor?.let {
+                newText.setTextColor(Color.parseColor(it))
+            }
+
+            val textSizePx = dpToPx(textViewSize)
+            newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
+
+            newText.x = (textViewX * screenFactorValues).toFloat()
+            newText.y = (textViewY * screenFactorValues).toFloat()
+
+            newText.rotation = textViewRotation
+
+            mainBinding.mainLayout.addView(newText)
 
         }
     }
@@ -174,5 +259,13 @@ class MainActivity : AppCompatActivity() {
             return null
         }
         return json
+    }
+
+    //**********************************************************************************************//
+    private fun dpToPx(dp: Float): Int {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP, dp,
+            resources.displayMetrics
+        ).toInt()
     }
 }

@@ -33,7 +33,5 @@ data class TextView (
     @JsonProperty("_android:textSize")
     val androidTextSize: String? = null,
 
-    @JsonProperty("_android:padding")
-    val androidPadding: String? = null
 )
 

@@ -77,7 +77,6 @@
         "_android:layout_x": "59dp",
         "_android:layout_y": "26dp",
         "_android:fontFamily": "@font/sophia_script",
-        "_android:padding": "10dp",
         "_android:text": "you",
         "_android:textColor": "#FA5672",
         "_android:textSize": "60sp"
