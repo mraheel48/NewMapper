@@ -2,17 +2,20 @@ package com.example.newmapper
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.newmapper.dataModel.ImageView
 import com.example.newmapper.dataModel.MapperModel
 import com.example.newmapper.dataModel.TextView
 import com.example.newmapper.databinding.ActivityMainBinding
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.google.gson.Gson
 import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
+import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity() {
@@ -37,6 +40,8 @@ class MainActivity : AppCompatActivity() {
         mainBinding.root.post {
             Log.e("myScreenWidth", "${mainBinding.root.width}")
             defaultScreenWidth = mainBinding.root.width
+            viewBoxWidth = defaultScreenWidth
+            viewBoxHeight = defaultScreenWidth
         }
 
         mainBinding.btnRead.setOnClickListener {
@@ -59,13 +64,13 @@ class MainActivity : AppCompatActivity() {
                             ""
                         ).toDouble()
 
-                    if (root.absoluteLayout!!.imageView != null) {
-                        root.absoluteLayout!!.imageView!!.forEachIndexed { index, imageView ->
+                    if (root.absoluteLayout.imageView != null) {
+                        root.absoluteLayout.imageView.forEachIndexed { index, imageView ->
                             imageArray.add(index, imageView)
                         }
                     }
-                    if (root.absoluteLayout!!.textView != null) {
-                        root.absoluteLayout?.textView?.forEachIndexed { index, textview ->
+                    if (root.absoluteLayout.textView != null) {
+                        root.absoluteLayout.textView.forEachIndexed { index, textview ->
                             textArray.add(index, textview)
                         }
                     }
@@ -74,6 +79,7 @@ class MainActivity : AppCompatActivity() {
 
                 if (imageArray.size > 0) {
                     Log.d("myJsonObject", "Json is not  null")
+                    loadImageFormMap()
                 }
 
                 if (textArray.size > 0) {
@@ -88,10 +94,68 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     private fun loadImageFormMap() {
+
         imageArray.forEachIndexed { index, imageView ->
 
+            val newImage = android.widget.ImageView(this@MainActivity)
+
+            val modelImageName = "${imageView.appSrcCompat?.replace("@drawable/", "")}.png"
+            val imagePath = "file:///android_asset/${modelImageName}"
+
+            val modelImageX = "${imageView.androidLayoutX}"
+            val imageViewX: Float = if (modelImageX == "null") {
+                Log.d("myImageX", "value is  if null")
+                0f
+            } else {
+                Log.d("myImageX", " value  ${modelImageX.replace("dp", "")}")
+                modelImageX.replace("dp", "").toFloat()
+            }
+
+            val modelImageY = "${imageView.androidLayoutY}"
+            val imageViewY: Float = if (modelImageY == "null") {
+                Log.d("myImageY", "value is  if null")
+                0f
+            } else {
+                Log.d("myImageY", " value  ${modelImageY.replace("dp", "")}")
+                modelImageY.replace("dp", "").toFloat()
+            }
+
+            val modelImageWidth = "${imageView.androidLayoutWidth}"
+            val imageViewWidth: Int = if (modelImageWidth == "null") {
+                Log.d("myImageY", "value is  if null")
+                0
+            } else {
+                Log.d("myImageY", " value  ${modelImageY.replace("dp", "")}")
+                modelImageWidth.replace("dp", "").toInt()
+            }
+
+            val modelImageHeight = "${imageView.androidLayoutHeight}"
+            val imageViewHeight: Int = if (modelImageHeight == "null") {
+                Log.d("myImageY", "value is  if null")
+                0
+            } else {
+                Log.d("myImageY", " value  ${modelImageY.replace("dp", "")}")
+                modelImageHeight.replace("dp", "").toInt()
+            }
+
+            val lp = RelativeLayout.LayoutParams(
+                (imageViewWidth * screenFactorValues).roundToInt(),
+                (imageViewHeight * screenFactorValues).roundToInt()
+            )
+
+            Log.d("myImagePath", "${imageViewHeight}")
+
+            Glide.with(this)
+                .load(imagePath)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(newImage)
+
+            newImage.x = (imageViewX * screenFactorValues).toFloat()
+            newImage.y = (imageViewY * screenFactorValues).toFloat()
+            newImage.layoutParams = lp
+
+            mainBinding.mainLayout.addView(newImage, index)
 
         }
     }
