@@ -1,10 +1,13 @@
 package com.example.newmapper
 
 import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Rect
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
+import android.widget.EditText
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainBinding.root)
 
         mainBinding.root.post {
-            Log.e("myScreenWidth", "${mainBinding.root.height}")
+            Log.e("myScreenWidth", "${mainBinding.root.width}")
             defaultScreenWidth = mainBinding.root.width
             viewBoxWidth = defaultScreenWidth
             viewBoxHeight = defaultScreenWidth
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding.btnRead.setOnClickListener {
 
-            val jsonFile = loadJSONFromAsset("3.json")
+            val jsonFile = loadJSONFromAsset("0.json")
 
             if (jsonFile != null) {
 
@@ -61,21 +64,25 @@ class MainActivity : AppCompatActivity() {
 
                 if (root.absoluteLayout != null) {
 
-                    screenFactorValues =
-                        defaultScreenWidth / root.absoluteLayout.androidLayoutWidth!!.replace(
-                            "dp",
-                            ""
-                        ).toDouble()
+                    val modelBaseWidth: String? = root.absoluteLayout.androidLayoutWidth
 
-                    if (root.absoluteLayout.imageView != null) {
-                        root.absoluteLayout.imageView.forEachIndexed { index, imageView ->
-                            imageArray.add(index, imageView)
+                    modelBaseWidth?.let {
+
+                        val modelBaseNewWidth = it.replace("dp", "").toDouble()
+
+                        screenFactorValues = defaultScreenWidth / modelBaseNewWidth
+
+                        if (root.absoluteLayout.imageView != null) {
+                            root.absoluteLayout.imageView.forEachIndexed { index, imageView ->
+                                imageArray.add(index, imageView)
+                            }
                         }
-                    }
-                    if (root.absoluteLayout.textView != null) {
-                        root.absoluteLayout.textView.forEachIndexed { index, textview ->
-                            textArray.add(index, textview)
+                        if (root.absoluteLayout.textView != null) {
+                            root.absoluteLayout.textView.forEachIndexed { index, textview ->
+                                textArray.add(index, textview)
+                            }
                         }
+
                     }
 
                 }
@@ -99,6 +106,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadImageFormMap() {
+
         imageArray.forEachIndexed { _, imageView ->
 
             val newImage = android.widget.ImageView(this@MainActivity)
@@ -125,21 +133,34 @@ class MainActivity : AppCompatActivity() {
             }
 
             val modelImageWidth = "${imageView.androidLayoutWidth}"
-            val imageViewWidth: Int = if (modelImageWidth == "null") {
-                Log.d("myImageY", "value is  if null")
-                0
-            } else {
-                Log.d("myImageY", " value  ${modelImageY.replace("dp", "")}")
-                modelImageWidth.replace("dp", "").toInt()
+
+            val imageViewWidth: Int = when (modelImageWidth) {
+                "null" -> {
+                    Log.d("myImageY", "value is  if null")
+                    defaultScreenWidth
+                }
+                "wrap_content" -> {
+                    Log.d("myImageY", "value is  if null")
+                    defaultScreenWidth
+                }
+                else -> {
+                    modelImageWidth.replace("dp", "").toInt()
+                }
             }
 
             val modelImageHeight = "${imageView.androidLayoutHeight}"
-            val imageViewHeight: Int = if (modelImageHeight == "null") {
-                Log.d("myImageY", "value is  if null")
-                0
-            } else {
-                Log.d("myImageY", " value  ${modelImageY.replace("dp", "")}")
-                modelImageHeight.replace("dp", "").toInt()
+            val imageViewHeight: Int = when (modelImageHeight) {
+                "null" -> {
+                    Log.d("myImageY", "value is  if null")
+                    defaultScreenWidth
+                }
+                "wrap_content" -> {
+                    Log.d("myImageY", "value is  if null")
+                    defaultScreenWidth
+                }
+                else -> {
+                    modelImageHeight.replace("dp", "").toInt()
+                }
             }
 
             val lp = RelativeLayout.LayoutParams(
@@ -147,7 +168,7 @@ class MainActivity : AppCompatActivity() {
                 (imageViewHeight * screenFactorValues).roundToInt()
             )
 
-            Log.d("myImagePath", "$imageViewHeight")
+            Log.d("myImagePath", imagePath)
 
             Glide.with(this)
                 .load(imagePath)
@@ -197,6 +218,8 @@ class MainActivity : AppCompatActivity() {
             } else {
                 modelTextSize.replace("sp", "").toFloat()
             }
+
+            Log.d("myTextSize", "${modelTextSize}")
 
             val modelTextX = "${textView.androidLayoutX}"
             val textViewX: Float = if (modelTextX == "null") {
@@ -279,7 +302,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             val textSizePx = dpToPx(textViewSize)
+//            newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
             newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
+
+            Log.d("textSize", "first Size ${(textViewX * screenFactorValues)}")
 
             newText.x = (textViewX * screenFactorValues).toFloat()
             newText.y = (textViewY * screenFactorValues).toFloat()
@@ -290,7 +316,60 @@ class MainActivity : AppCompatActivity() {
 
             mainBinding.mainLayout.addView(newText)
 
+            newText.post {
+
+                val modelWidthSize = "${textView.androidLayoutWidth}"
+                val textViewWidthSize: Float = if (modelWidthSize == "null") {
+                    20f
+                } else {
+                    modelWidthSize.replace("dp", "").toFloat()
+                }
+
+                val fontSizeTarget =
+                    correctWidth(newText, (textViewWidthSize * screenFactorValues).roundToInt())
+
+                Log.d("textSize", "second Size ${(textViewWidthSize * screenFactorValues)}")
+
+                newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSizeTarget)
+
+                val params = RelativeLayout.LayoutParams(
+                    RelativeLayout.LayoutParams.WRAP_CONTENT,
+                    RelativeLayout.LayoutParams.WRAP_CONTENT
+                )
+
+                val newX = newText.x + 20
+                newText.x = newX
+
+                val newY = newText.y + 20
+                newText.y = newY
+
+                Log.d("myTag", "${newY}")
+
+
+                newText.layoutParams = params
+
+            }
+
         }
+    }
+
+    private fun correctWidth(textView: android.widget.TextView, desiredWidth: Int): Float {
+        val paint = Paint()
+        val bounds = Rect()
+        paint.typeface = textView.typeface
+        var textSize = textView.textSize
+        paint.textSize = textSize
+        val text = textView.text.toString()
+        paint.getTextBounds(text, 0, text.length, bounds)
+        if (!textView.text.toString().contains("\n")) {
+            while (bounds.width() > desiredWidth) {
+                textSize--
+                paint.textSize = textSize
+                paint.getTextBounds(text, 0, text.length, bounds)
+            }
+        }
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
+        return textSize
     }
 
     //*******************This method return the Json String *********************//

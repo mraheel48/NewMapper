@@ -1,20 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="1000dp"
-    android:layout_height="1000dp">
+    android:layout_width="300dp"
+    android:layout_height="300dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/l_0" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="191dp"
+        android:layout_height="191dp"
+        android:layout_x="55dp"
+        android:layout_y="55dp"
+        app:srcCompat="@drawable/l_1" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="66dp"
+        android:layout_height="wrap_content"
+        android:layout_x="198dp"
+        android:layout_y="30dp"
+        app:srcCompat="@drawable/l_2" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="27dp"
+        android:layout_height="23dp"
+        android:layout_x="220dp"
+        android:layout_y="98dp"
+        app:srcCompat="@drawable/l_3" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="31dp"
+        android:layout_height="28dp"
+        android:layout_x="40dp"
+        android:layout_y="187dp"
+        app:srcCompat="@drawable/l_4" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="1000dp"
-        android:layout_height="1000dp"
-        app:srcCompat="@drawable/bg" />
+        android:layout_width="52dp"
+        android:layout_height="45dp"
+        android:layout_x="41dp"
+        android:layout_y="218dp"
+        app:srcCompat="@drawable/l_5" />
 
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="758dp"
-        android:layout_height="758dp"
-        android:layout_x="123dp"
-        android:layout_y="94dp"
-        app:srcCompat="@drawable/boarder" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_x="1dp"
+        android:layout_y="1dp"
+        android:fontFamily="@font/sophiascript"
+        android:rotation="-22"
+        android:text="Love"
+        android:textColor="#FFFFFF"
+        android:textSize="71sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="55dp"
+        android:layout_y="38dp"
+        android:fontFamily="@font/sophiascript"
+        android:rotation="-22"
+        android:text="You"
+        android:textColor="#FA5672"
+        android:textSize="34sp" />
+
 </AbsoluteLayout>
