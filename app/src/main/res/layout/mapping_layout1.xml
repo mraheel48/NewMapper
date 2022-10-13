@@ -53,25 +53,13 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="110dp"
-        android:layout_height="wrap_content"
-        android:layout_x="1dp"
-        android:layout_y="1dp"
+        android:layout_height="78dp"
+        android:layout_x="13dp"
+        android:layout_y="4dp"
         android:fontFamily="@font/sophiascript"
-        android:rotation="-22"
         android:text="Love"
-        android:textColor="#FFFFFF"
-        android:textSize="71sp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="55dp"
-        android:layout_y="38dp"
-        android:fontFamily="@font/sophiascript"
-        android:rotation="-22"
-        android:text="You"
-        android:textColor="#FA5672"
-        android:textSize="34sp" />
+        android:textColor="#00BCD4"
+        android:textSize="71sp"
+        app:autoSizeTextType="uniform" />
 
 </AbsoluteLayout>

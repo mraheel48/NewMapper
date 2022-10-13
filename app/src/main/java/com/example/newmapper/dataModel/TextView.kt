@@ -49,7 +49,12 @@ data class TextView(
     val androidShadowRadius: String? = null,
 
     @JsonProperty("_android:alpha")
-    val androidAlpha: String? = null
+    val androidAlpha: String? = null,
+
+    @JsonProperty("_app:autoSizeTextType")
+    val appAutoSizeTextType: String? = null
 )
+
+
 
 

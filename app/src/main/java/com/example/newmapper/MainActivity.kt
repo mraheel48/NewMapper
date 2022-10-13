@@ -10,6 +10,7 @@ import android.util.TypedValue
 import android.widget.EditText
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.TextViewCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.newmapper.dataModel.ImageView
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         mainBinding.btnRead.setOnClickListener {
 
-            val jsonFile = loadJSONFromAsset("0.json")
+            val jsonFile = loadJSONFromAsset("10.json")
 
             if (jsonFile != null) {
 
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
                                 imageArray.add(index, imageView)
                             }
                         }
+
                         if (root.absoluteLayout.textView != null) {
                             root.absoluteLayout.textView.forEachIndexed { index, textview ->
                                 textArray.add(index, textview)
@@ -212,14 +214,41 @@ class MainActivity : AppCompatActivity() {
                 modelTextColor
             }
 
-            val modelTextSize = "${textView.androidTextSize}"
-            val textViewSize: Float = if (modelTextSize == "null") {
-                20f
+            val modelTextWidth = "${textView.androidLayoutWidth}"
+            val textViewWidth: String? = if (modelTextWidth == "wrap_content") {
+                null
             } else {
-                modelTextSize.replace("sp", "").toFloat()
+                modelTextWidth.replace("dp", "")
             }
 
-            Log.d("myTextSize", "${modelTextSize}")
+            val modelTextHeight = "${textView.androidLayoutHeight}"
+            val textViewHeight: String? = if (modelTextHeight == "wrap_content") {
+                null
+            } else {
+                modelTextHeight.replace("dp", "")
+            }
+
+            if (textViewWidth != null && textViewHeight != null) {
+
+                Log.d("myTextValue", "${(textViewWidth.toInt() * screenFactorValues).roundToInt()}")
+
+                val lp = RelativeLayout.LayoutParams(
+                    (textViewWidth.toInt() * screenFactorValues).roundToInt(),
+                    (textViewHeight.toInt() * screenFactorValues).roundToInt()
+                )
+
+                newText.layoutParams = lp
+
+            }
+
+            /* val modelTextSize = "${textView.androidTextSize}"
+             val textViewSize: Float = if (modelTextSize == "null") {
+                 20f
+             } else {
+                 modelTextSize.replace("sp", "").toFloat()
+             }
+
+             Log.d("myTextSize", "${modelTextSize}")*/
 
             val modelTextX = "${textView.androidLayoutX}"
             val textViewX: Float = if (modelTextX == "null") {
@@ -288,7 +317,7 @@ class MainActivity : AppCompatActivity() {
                 modelTextAlpha.toFloat()
             }
 
-            Log.d("myTextValues", "$textViewAlpha")
+
 
             newText.text = textViewName
 
@@ -301,9 +330,8 @@ class MainActivity : AppCompatActivity() {
                 newText.setTextColor(Color.parseColor(it))
             }
 
-            val textSizePx = dpToPx(textViewSize)
+//            val textSizePx = dpToPx(textViewSize)
 //            newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
-            newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
 
             Log.d("textSize", "first Size ${(textViewX * screenFactorValues)}")
 
@@ -314,9 +342,14 @@ class MainActivity : AppCompatActivity() {
 
             newText.alpha = textViewAlpha
 
+            TextViewCompat.setAutoSizeTextTypeWithDefaults(
+                newText,
+                TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM
+            )
+
             mainBinding.mainLayout.addView(newText)
 
-            newText.post {
+            /*newText.post {
 
                 val modelWidthSize = "${textView.androidLayoutWidth}"
                 val textViewWidthSize: Float = if (modelWidthSize == "null") {
@@ -348,7 +381,7 @@ class MainActivity : AppCompatActivity() {
 
                 newText.layoutParams = params
 
-            }
+            }*/
 
         }
     }
