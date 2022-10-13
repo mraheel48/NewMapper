@@ -5,6 +5,8 @@ import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.util.TypedValue
 import android.widget.RelativeLayout
@@ -21,6 +23,8 @@ import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.StandardCharsets
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 import kotlin.math.roundToInt
 
 
@@ -37,6 +41,11 @@ class MainActivity : AppCompatActivity() {
 
     private var screenFactorValues: Double = 1.0
     private var defaultScreenWidth: Int = 720
+
+
+    private var workerHandler = Handler(Looper.getMainLooper())
+    private var workerThread: ExecutorService = Executors.newCachedThreadPool()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,15 +97,18 @@ class MainActivity : AppCompatActivity() {
 
                 }
 
-                if (imageArray.size > 0) {
-                    Log.d("myJsonObject", "Json is not  null")
-                    loadImageFormMap()
+                workerThread.execute {
+                    if (imageArray.size > 0) {
+                        Log.d("myJsonObject", "Json is not  null")
+                        loadImageFormMap()
+                    }
+
+                    if (textArray.size > 0) {
+                        Log.d("myJsonObject", "Json is not  null")
+                        loadTextFormMap()
+                    }
                 }
 
-                if (textArray.size > 0) {
-                    Log.d("myJsonObject", "Json is not  null")
-                    loadTextFormMap()
-                }
 
             } else {
                 Log.d("myJsonObject", "Json is null")
@@ -164,24 +176,35 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            val lp = RelativeLayout.LayoutParams(
-                (imageViewWidth * screenFactorValues).roundToInt(),
-                (imageViewHeight * screenFactorValues).roundToInt()
-            )
+            val lp =
+                if (imageViewWidth == defaultScreenWidth && imageViewHeight == defaultScreenWidth) {
+                    RelativeLayout.LayoutParams(
+                        imageViewWidth,
+                        imageViewHeight
+                    )
+                } else {
+                    RelativeLayout.LayoutParams(
+                        (imageViewWidth * screenFactorValues).roundToInt(),
+                        (imageViewHeight * screenFactorValues).roundToInt()
+                    )
+                }
 
-            Log.d("myImagePath", imagePath)
-
-            Glide.with(this)
-                .load(imagePath)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(newImage)
+            Log.d("myImagePath", "${(imageViewWidth)}")
 
             newImage.x = (imageViewX * screenFactorValues).toFloat()
             newImage.y = (imageViewY * screenFactorValues).toFloat()
 
             newImage.layoutParams = lp
 
-            mainBinding.mainLayout.addView(newImage)
+            workerHandler.post {
+
+                mainBinding.mainLayout.addView(newImage)
+
+                Glide.with(this)
+                    .load(imagePath)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(newImage)
+            }
 
         }
     }
@@ -340,7 +363,9 @@ class MainActivity : AppCompatActivity() {
                 TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM
             )
 
-            mainBinding.mainLayout.addView(newText)
+            workerHandler.post {
+                mainBinding.mainLayout.addView(newText)
+            }
 
             /*newText.post {
 
