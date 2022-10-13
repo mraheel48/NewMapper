@@ -7,7 +7,6 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
-import android.widget.EditText
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.TextViewCompat
@@ -230,8 +229,6 @@ class MainActivity : AppCompatActivity() {
 
             if (textViewWidth != null && textViewHeight != null) {
 
-                Log.d("myTextValue", "${(textViewWidth.toInt() * screenFactorValues).roundToInt()}")
-
                 val lp = RelativeLayout.LayoutParams(
                     (textViewWidth.toInt() * screenFactorValues).roundToInt(),
                     (textViewHeight.toInt() * screenFactorValues).roundToInt()
@@ -241,14 +238,12 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            /* val modelTextSize = "${textView.androidTextSize}"
-             val textViewSize: Float = if (modelTextSize == "null") {
-                 20f
-             } else {
-                 modelTextSize.replace("sp", "").toFloat()
-             }
-
-             Log.d("myTextSize", "${modelTextSize}")*/
+            val modelTextSize = "${textView.androidTextSize}"
+            val textViewSize: Float = if (modelTextSize == "null") {
+                20f
+            } else {
+                modelTextSize.replace("sp", "").toFloat()
+            }
 
             val modelTextX = "${textView.androidLayoutX}"
             val textViewX: Float = if (modelTextX == "null") {
@@ -317,8 +312,6 @@ class MainActivity : AppCompatActivity() {
                 modelTextAlpha.toFloat()
             }
 
-
-
             newText.text = textViewName
 
             textViewFontName?.let {
@@ -330,13 +323,13 @@ class MainActivity : AppCompatActivity() {
                 newText.setTextColor(Color.parseColor(it))
             }
 
-//            val textSizePx = dpToPx(textViewSize)
-//            newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
-
-            Log.d("textSize", "first Size ${(textViewX * screenFactorValues)}")
+            val textSizePx = dpToPx(textViewSize)
+            newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
 
             newText.x = (textViewX * screenFactorValues).toFloat()
             newText.y = (textViewY * screenFactorValues).toFloat()
+
+            Log.d("myTextX", "${(textViewX * screenFactorValues).toFloat()}")
 
             newText.rotation = textViewRotation
 
