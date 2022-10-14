@@ -27,7 +27,6 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.roundToInt
 
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding
@@ -80,6 +79,8 @@ class MainActivity : AppCompatActivity() {
                         val modelBaseNewWidth = it.replace("dp", "").toDouble()
 
                         screenFactorValues = defaultScreenWidth / modelBaseNewWidth
+
+                        Log.d("myBaseFactor","${screenFactorValues}")
 
                         if (root.absoluteLayout.imageView != null) {
                             root.absoluteLayout.imageView.forEachIndexed { index, imageView ->
@@ -179,8 +180,8 @@ class MainActivity : AppCompatActivity() {
             val lp =
                 if (imageViewWidth == defaultScreenWidth && imageViewHeight == defaultScreenWidth) {
                     RelativeLayout.LayoutParams(
-                        imageViewWidth,
-                        imageViewHeight
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT
                     )
                 } else {
                     RelativeLayout.LayoutParams(
@@ -188,8 +189,6 @@ class MainActivity : AppCompatActivity() {
                         (imageViewHeight * screenFactorValues).roundToInt()
                     )
                 }
-
-            Log.d("myImagePath", "${(imageViewWidth)}")
 
             newImage.x = (imageViewX * screenFactorValues).toFloat()
             newImage.y = (imageViewY * screenFactorValues).toFloat()

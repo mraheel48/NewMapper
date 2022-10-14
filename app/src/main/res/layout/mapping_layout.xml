@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="110dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="36dp"
         android:layout_y="110dp"
@@ -16,5 +16,5 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="71sp" />
+        android:textSize="71pt" />
 </AbsoluteLayout>
