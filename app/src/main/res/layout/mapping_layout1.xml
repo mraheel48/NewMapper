@@ -14,16 +14,16 @@
         android:id="@+id/imageView2"
         android:layout_width="638dp"
         android:layout_height="638dp"
-        android:layout_x="180dp"
-        android:layout_y="181dp"
+        android:layout_x="5dp"
+        android:layout_y="12dp"
         app:srcCompat="@drawable/l_1" />
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="221dp"
         android:layout_height="198dp"
-        android:layout_x="663dp"
-        android:layout_y="119dp"
+        android:layout_x="412dp"
+        android:layout_y="145dp"
         app:srcCompat="@drawable/l_2" />
 
     <ImageView

@@ -19,6 +19,9 @@ import com.example.newmapper.dataModel.MapperModel
 import com.example.newmapper.dataModel.TextView
 import com.example.newmapper.databinding.ActivityMainBinding
 import com.fasterxml.jackson.databind.ObjectMapper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import org.json.JSONObject
 import java.io.IOException
 import java.io.InputStream
@@ -45,6 +48,9 @@ class MainActivity : AppCompatActivity() {
     private var workerHandler = Handler(Looper.getMainLooper())
     private var workerThread: ExecutorService = Executors.newCachedThreadPool()
 
+    private var job: Job = Job()
+    var scope = CoroutineScope(Dispatchers.Main + job)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +62,25 @@ class MainActivity : AppCompatActivity() {
             defaultScreenWidth = mainBinding.root.width
             viewBoxWidth = defaultScreenWidth
             viewBoxHeight = defaultScreenWidth
+
+            NetworkWorking.getNetworkLiveData(applicationContext).observe(this) { isConnected ->
+                if (isConnected) {
+                    Log.d("myNetWork", "Net Work is connect")
+                } else {
+                    Log.d("myNetWork", "Net Work is not connect")
+                }
+            }
+
+            /*NetworkUtils.getNetworkLiveData(applicationContext).observe(this) { isConnected ->
+
+                if (isConnected) {
+                    Toast.makeText(applicationContext, "Network is connect", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    Toast.makeText(applicationContext, "Network is not connect", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }*/
         }
 
         mainBinding.btnRead.setOnClickListener {
@@ -80,7 +105,7 @@ class MainActivity : AppCompatActivity() {
 
                         screenFactorValues = defaultScreenWidth / modelBaseNewWidth
 
-                        Log.d("myBaseFactor","${screenFactorValues}")
+                        Log.d("myBaseFactor", "${screenFactorValues}")
 
                         if (root.absoluteLayout.imageView != null) {
                             root.absoluteLayout.imageView.forEachIndexed { index, imageView ->
