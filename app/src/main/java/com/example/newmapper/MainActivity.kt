@@ -1,5 +1,6 @@
 package com.example.newmapper
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Rect
@@ -11,7 +12,6 @@ import android.util.Log
 import android.util.TypedValue
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.TextViewCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.newmapper.dataModel.ImageView
@@ -29,6 +29,7 @@ import java.nio.charset.StandardCharsets
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import kotlin.math.roundToInt
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -63,29 +64,29 @@ class MainActivity : AppCompatActivity() {
             viewBoxWidth = defaultScreenWidth
             viewBoxHeight = defaultScreenWidth
 
-            NetworkWorking.getNetworkLiveData(applicationContext).observe(this) { isConnected ->
-                if (isConnected) {
-                    Log.d("myNetWork", "Net Work is connect")
-                } else {
-                    Log.d("myNetWork", "Net Work is not connect")
-                }
-            }
-
-            /*NetworkUtils.getNetworkLiveData(applicationContext).observe(this) { isConnected ->
-
-                if (isConnected) {
-                    Toast.makeText(applicationContext, "Network is connect", Toast.LENGTH_SHORT)
-                        .show()
-                } else {
-                    Toast.makeText(applicationContext, "Network is not connect", Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }*/
         }
 
         mainBinding.btnRead.setOnClickListener {
 
-            val jsonFile = loadJSONFromAsset("10.json")
+            /* val metrics = DisplayMetrics()
+             windowManager.defaultDisplay.getRealMetrics(metrics)*/
+
+            val metrics = resources.displayMetrics
+
+//            val densityDpi = (metrics.density * 160f).toInt()
+            val densityDpi = resources.displayMetrics.densityDpi
+
+            /*val px = 56 * (densityDpi/160)*/
+
+            // Get the screen's density scale
+            val scale: Float = resources.displayMetrics.density
+            // Convert the dps to pixels, based on density scale
+            val mGestureThreshold = (1 * scale + 0.5f).toInt()
+
+            Log.d("mySize", "${mGestureThreshold}")
+
+
+            val jsonFile = loadJSONFromAsset("3.json")
 
             if (jsonFile != null) {
 
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity() {
 
                     modelBaseWidth?.let {
 
-                        val modelBaseNewWidth = it.replace("dp", "").toDouble()
+                        val modelBaseNewWidth = it.replace("pt", "").toDouble()
 
                         screenFactorValues = defaultScreenWidth / modelBaseNewWidth
 
@@ -158,8 +159,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d("myImageX", "value is  if null")
                 0f
             } else {
-                Log.d("myImageX", " value  ${modelImageX.replace("dp", "")}")
-                modelImageX.replace("dp", "").toFloat()
+                Log.d("myImageX", " value  ${modelImageX.replace("pt", "")}")
+                modelImageX.replace("pt", "").toFloat()
             }
 
             val modelImageY = "${imageView.androidLayoutY}"
@@ -167,8 +168,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d("myImageY", "value is  if null")
                 0f
             } else {
-                Log.d("myImageY", " value  ${modelImageY.replace("dp", "")}")
-                modelImageY.replace("dp", "").toFloat()
+                Log.d("myImageY", " value  ${modelImageY.replace("pt", "")}")
+                modelImageY.replace("pt", "").toFloat()
             }
 
             val modelImageWidth = "${imageView.androidLayoutWidth}"
@@ -183,7 +184,7 @@ class MainActivity : AppCompatActivity() {
                     defaultScreenWidth
                 }
                 else -> {
-                    modelImageWidth.replace("dp", "").toInt()
+                    modelImageWidth.replace("pt", "").toInt()
                 }
             }
 
@@ -198,7 +199,7 @@ class MainActivity : AppCompatActivity() {
                     defaultScreenWidth
                 }
                 else -> {
-                    modelImageHeight.replace("dp", "").toInt()
+                    modelImageHeight.replace("pt", "").toInt()
                 }
             }
 
@@ -264,14 +265,14 @@ class MainActivity : AppCompatActivity() {
             val textViewWidth: String? = if (modelTextWidth == "wrap_content") {
                 null
             } else {
-                modelTextWidth.replace("dp", "")
+                modelTextWidth.replace("pt", "")
             }
 
             val modelTextHeight = "${textView.androidLayoutHeight}"
             val textViewHeight: String? = if (modelTextHeight == "wrap_content") {
                 null
             } else {
-                modelTextHeight.replace("dp", "")
+                modelTextHeight.replace("pt", "")
             }
 
             if (textViewWidth != null && textViewHeight != null) {
@@ -289,21 +290,21 @@ class MainActivity : AppCompatActivity() {
             val textViewSize: Float = if (modelTextSize == "null") {
                 20f
             } else {
-                modelTextSize.replace("sp", "").toFloat()
+                modelTextSize.replace("pt", "").toFloat()
             }
 
             val modelTextX = "${textView.androidLayoutX}"
             val textViewX: Float = if (modelTextX == "null") {
                 0f
             } else {
-                modelTextX.replace("dp", "").toFloat()
+                modelTextX.replace("pt", "").toFloat()
             }
 
             val modelTextY = "${textView.androidLayoutY}"
             val textViewY: Float = if (modelTextY == "null") {
                 0f
             } else {
-                modelTextY.replace("dp", "").toFloat()
+                modelTextY.replace("pt", "").toFloat()
             }
 
             val modelTextRotation = "${textView.androidRotation}"
@@ -370,22 +371,19 @@ class MainActivity : AppCompatActivity() {
                 newText.setTextColor(Color.parseColor(it))
             }
 
-            val textSizePx = dpToPx(textViewSize)
-            newText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizePx.toFloat())
+            Log.d("myTextX", "${screenFactorValues}")
+
+            newText.setTextSize(
+                TypedValue.COMPLEX_UNIT_PX,
+                (textViewSize * screenFactorValues).toFloat()
+            )
 
             newText.x = (textViewX * screenFactorValues).toFloat()
             newText.y = (textViewY * screenFactorValues).toFloat()
 
-            Log.d("myTextX", "${(textViewX * screenFactorValues).toFloat()}")
-
             newText.rotation = textViewRotation
 
             newText.alpha = textViewAlpha
-
-            TextViewCompat.setAutoSizeTextTypeWithDefaults(
-                newText,
-                TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM
-            )
 
             workerHandler.post {
                 mainBinding.mainLayout.addView(newText)
@@ -397,7 +395,7 @@ class MainActivity : AppCompatActivity() {
                 val textViewWidthSize: Float = if (modelWidthSize == "null") {
                     20f
                 } else {
-                    modelWidthSize.replace("dp", "").toFloat()
+                    modelWidthSize.replace("pt", "").toFloat()
                 }
 
                 val fontSizeTarget =
@@ -464,10 +462,46 @@ class MainActivity : AppCompatActivity() {
     }
 
     //**********************************************************************************************//
-    private fun dpToPx(dp: Float): Int {
+    private fun ptToPx(pt: Float): Int {
         return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP, dp,
+            TypedValue.COMPLEX_UNIT_DIP, pt,
             resources.displayMetrics
         ).toInt()
+    }
+
+    private fun dpToPx(dp: Int): Int {
+        val density: Float = resources.displayMetrics.density
+        return (dp.toFloat() * density).roundToInt()
+    }
+
+    fun convertSpToPixels(sp: Float, context: Context): Float {
+        return TypedValue.applyDimension(
+            TypedValue.COMPLEX_UNIT_DIP,
+            sp,
+            context.resources.displayMetrics
+        )
+    }
+
+
+    /**
+     * This method converts dp unit to equivalent pixels, depending on device density.
+     *
+     * @param dp      A value in dp (density independent pixels) unit. Which we need to convert into pixels
+     * @param context Context to get resources and device specific display metrics
+     * @return A float value to represent px equivalent to dp depending on device density
+     */
+    private fun convertDpToPx(context: Context, dp: Float): Float {
+        return dp * context.resources.displayMetrics.density
+    }
+
+    /**
+     * This method converts device specific pixels to density independent pixels.
+     *
+     * @param px      A value in px (pixels) unit. Which we need to convert into db
+     * @param context Context to get resources and device specific display metrics
+     * @return A float value to represent dp equivalent to px value
+     */
+    private fun convertPxToDp(context: Context, px: Float): Float {
+        return px / context.resources.displayMetrics.density
     }
 }

@@ -1,6 +1,56 @@
 {
-  "name": "Norman",
-  "email": "norman@futurestud.io",
-  "age": 26,
-  "isDeveloper": true
+  "AbsoluteLayout": {
+    "ImageView": [
+      {
+        "_android:id": "@+id/imageView2",
+        "_android:layout_width": "wrap_content",
+        "_android:layout_height": "wrap_content",
+        "_android:layout_x": "81dp",
+        "_android:layout_y": "81dp",
+        "_app:srcCompat": "@drawable/user"
+      },
+      {
+        "_android:id": "@+id/imageView",
+        "_android:layout_width": "300dp",
+        "_android:layout_height": "300dp",
+        "_app:srcCompat": "@drawable/bg"
+      },
+      {
+        "_android:id": "@+id/imageView3",
+        "_android:layout_width": "35dp",
+        "_android:layout_height": "33dp",
+        "_android:layout_x": "46dp",
+        "_android:layout_y": "65dp",
+        "_app:srcCompat": "@drawable/l_1"
+      },
+      {
+        "_android:id": "@+id/imageView4",
+        "_android:layout_width": "20dp",
+        "_android:layout_height": "18dp",
+        "_android:layout_x": "244dp",
+        "_android:layout_y": "84dp",
+        "_app:srcCompat": "@drawable/l_2"
+      },
+      {
+        "_android:id": "@+id/imageView5",
+        "_android:layout_width": "14dp",
+        "_android:layout_height": "13dp",
+        "_android:layout_x": "150dp",
+        "_android:layout_y": "178dp",
+        "_app:srcCompat": "@drawable/l_3"
+      },
+      {
+        "_android:id": "@+id/imageView6",
+        "_android:layout_width": "18dp",
+        "_android:layout_height": "16dp",
+        "_android:layout_x": "169dp",
+        "_android:layout_y": "166dp",
+        "_app:srcCompat": "@drawable/l_4"
+      }
+    ],
+    "_xmlns:android": "http://schemas.android.com/apk/res/android",
+    "_xmlns:app": "http://schemas.android.com/apk/res-auto",
+    "_android:layout_width": "300dp",
+    "_android:layout_height": "300dp"
+  }
 }

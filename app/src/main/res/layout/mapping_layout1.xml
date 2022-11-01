@@ -1,69 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300pt"
-    android:layout_height="300pt">
+    android:layout_width="300dp"
+    android:layout_height="300dp"
+    android:layout_x="0dp"
+    android:layout_y="0dp">
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="300pt"
-        android:layout_height="300pt"
-        app:srcCompat="@drawable/l_0" />
+        android:id="@+id/imageView8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="71dp"
+        android:layout_y="83dp"
+        app:srcCompat="@drawable/user" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="638dp"
-        android:layout_height="638dp"
-        android:layout_x="5dp"
-        android:layout_y="12dp"
-        app:srcCompat="@drawable/l_1" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="221dp"
-        android:layout_height="198dp"
-        android:layout_x="412dp"
-        android:layout_y="145dp"
-        app:srcCompat="@drawable/l_2" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="91dp"
-        android:layout_height="78dp"
-        android:layout_x="735dp"
-        android:layout_y="329dp"
-        app:srcCompat="@drawable/l_3" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="102dp"
-        android:layout_height="99dp"
-        android:layout_x="136dp"
-        android:layout_y="624dp"
-        app:srcCompat="@drawable/l_4" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="172dp"
-        android:layout_height="151dp"
-        android:layout_x="140dp"
-        android:layout_y="730dp"
-        app:srcCompat="@drawable/l_5" />
-
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/textView2"
-        android:layout_width="361dp"
-        android:layout_height="255dp"
-        android:layout_x="0dp"
-        android:layout_y="0dp"
-        android:fontFamily="@font/sophiascript"
-        android:gravity="center"
-        android:rotation="-22"
-        android:text="Love"
-        android:textColor="#FFFFFF"
-        android:textSize="400sp"
-        app:autoSizeMaxTextSize="1000sp"
-        app:autoSizeMinTextSize="50sp"
-        app:autoSizeStepGranularity="50sp"
-        app:autoSizeTextType="uniform" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="123dp"
+        android:layout_y="12dp"
+        android:fontFamily="@font/metropolis_regular"
+        android:text="HAPPY"
+        android:textAlignment="center"
+        android:textColor="#55312A"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="71dp"
+        android:layout_y="17dp"
+        android:fontFamily="@font/cookie_regular"
+        android:text="Valentine’s"
+        android:textAlignment="center"
+        android:textColor="#55312A"
+        android:textSize="48sp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="119dp"
+        android:layout_y="50dp"
+        android:fontFamily="@font/cookie_regular"
+        android:text="day"
+        android:textAlignment="center"
+        android:textColor="#55312A"
+        android:textSize="48sp" />
+
 </AbsoluteLayout>

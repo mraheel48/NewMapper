@@ -1,7 +1,6 @@
 package com.example.newmapper
 
 import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.SerialName
 
 data class JsonDataParser(
     @SerializedName("json_id")

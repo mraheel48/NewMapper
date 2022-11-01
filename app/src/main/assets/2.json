@@ -2,84 +2,58 @@
   "AbsoluteLayout": {
     "ImageView": [
       {
-        "_android:id": "@+id/imageView",
+        "_android:id": "@+id/imageView8",
+        "_android:layout_width": "100dp",
+        "_android:layout_height": "100dp",
+        "_android:layout_x": "71dp",
+        "_android:layout_y": "83dp",
+        "_app:srcCompat": "@drawable/user"
+      },
+      {
+        "_android:id": "@+id/imageView7",
         "_android:layout_width": "300dp",
         "_android:layout_height": "300dp",
+        "_android:layout_x": "0dp",
+        "_android:layout_y": "0dp",
         "_app:srcCompat": "@drawable/bg"
-      },
-      {
-        "_android:id": "@+id/imageView2",
-        "_android:layout_width": "191dp",
-        "_android:layout_height": "191dp",
-        "_android:layout_x": "54dp",
-        "_android:layout_y": "54dp",
-        "_app:srcCompat": "@drawable/abc"
-      },
-      {
-        "_android:id": "@+id/imageView8",
-        "_android:layout_width": "191dp",
-        "_android:layout_height": "191dp",
-        "_android:layout_x": "54dp",
-        "_android:layout_y": "54dp",
-        "_app:srcCompat": "@drawable/boarder"
-      },
-      {
-        "_android:id": "@+id/imageView3",
-        "_android:layout_width": "66dp",
-        "_android:layout_height": "59dp",
-        "_android:layout_x": "198dp",
-        "_android:layout_y": "35dp",
-        "_android:rotation": "0",
-        "_app:srcCompat": "@drawable/heart_1"
-      },
-      {
-        "_android:id": "@+id/imageView4",
-        "_android:layout_width": "27dp",
-        "_android:layout_height": "23dp",
-        "_android:layout_x": "220dp",
-        "_android:layout_y": "98dp",
-        "_app:srcCompat": "@drawable/heart_2"
-      },
-      {
-        "_android:id": "@+id/imageView5",
-        "_android:layout_width": "30dp",
-        "_android:layout_height": "28dp",
-        "_android:layout_x": "40dp",
-        "_android:layout_y": "187dp",
-        "_app:srcCompat": "@drawable/heart_4"
-      },
-      {
-        "_android:id": "@+id/imageView6",
-        "_android:layout_width": "51dp",
-        "_android:layout_height": "45dp",
-        "_android:layout_x": "41dp",
-        "_android:layout_y": "218dp",
-        "_app:srcCompat": "@drawable/heart_3"
       }
     ],
     "TextView": [
       {
-        "_android:id": "@+id/textView",
-        "_android:layout_width": "wrap_content",
-        "_android:layout_height": "wrap_content",
-        "_android:layout_x": "23dp",
-        "_android:layout_y": "19dp",
-        "_android:fontFamily": "@font/sophia_script",
-        "_android:rotation": "-22",
-        "_android:text": "Love",
-        "_android:textColor": "#FFFFFF",
-        "_android:textSize": "60sp"
-      },
-      {
         "_android:id": "@+id/textView2",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "59dp",
-        "_android:layout_y": "26dp",
-        "_android:fontFamily": "@font/sophia_script",
-        "_android:text": "you",
-        "_android:textColor": "#FA5672",
-        "_android:textSize": "60sp"
+        "_android:layout_x": "123dp",
+        "_android:layout_y": "12dp",
+        "_android:fontFamily": "@font/cookie_regular",
+        "_android:text": "HAPPY",
+        "_android:textAlignment": "center",
+        "_android:textColor": "#55312A",
+        "_android:textSize": "13sp"
+      },
+      {
+        "_android:id": "@+id/textView3",
+        "_android:layout_width": "wrap_content",
+        "_android:layout_height": "wrap_content",
+        "_android:layout_x": "71dp",
+        "_android:layout_y": "17dp",
+        "_android:fontFamily": "@font/cookie_regular",
+        "_android:text": "Valentine’s",
+        "_android:textAlignment": "center",
+        "_android:textColor": "#55312A",
+        "_android:textSize": "48sp"
+      },
+      {
+        "_android:id": "@+id/textView4",
+        "_android:layout_width": "wrap_content",
+        "_android:layout_height": "wrap_content",
+        "_android:layout_x": "119dp",
+        "_android:layout_y": "52dp",
+        "_android:fontFamily": "@font/cookie_regular",
+        "_android:text": "day",
+        "_android:textAlignment": "center",
+        "_android:textColor": "#55312A",
+        "_android:textSize": "48sp"
       }
     ],
     "_xmlns:android": "http://schemas.android.com/apk/res/android",
