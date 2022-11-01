@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300sp"
-    android:layout_height="300sp">
+    android:layout_width="300dp"
+    android:layout_height="300dp">
 
     <ImageView
         android:id="@+id/imageView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="61sp"
-        android:layout_y="62sp"
+        android:layout_x="91dp"
+        android:layout_y="49dp"
         app:srcCompat="@drawable/user" />
 
     <ImageView
@@ -22,11 +22,22 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="61sp"
-        android:layout_y="228sp"
+        android:layout_x="61dp"
+        android:layout_y="228dp"
         android:fontFamily="@font/cookie_regular"
         android:text="Valentine’s"
         android:textColor="#FFE7E8"
         android:textSize="56dp" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="129dp"
+        android:layout_y="278dp"
+        android:fontFamily="@font/metropolis_regular"
+        android:text="DAY"
+        android:textColor="#FFE7E8"
+        android:textSize="17dp" />
 
 </AbsoluteLayout>

@@ -5,34 +5,44 @@
         "_android:id": "@+id/imageView8",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "91pt",
-        "_android:layout_y": "49pt",
+        "_android:layout_x": "91dp",
+        "_android:layout_y": "49dp",
         "_app:srcCompat": "@drawable/user"
       },
       {
         "_android:id": "@+id/imageView",
-        "_android:layout_width": "300pt",
-        "_android:layout_height": "300pt",
+        "_android:layout_width": "300dp",
+        "_android:layout_height": "300dp",
         "_app:srcCompat": "@drawable/bg"
       }
     ],
     "TextView": [
       {
-        "_android:id": "@+id/textView3",
+        "_android:id": "@+id/textView6",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "61pt",
-        "_android:layout_y": "228pt",
+        "_android:layout_x": "61dp",
+        "_android:layout_y": "228dp",
         "_android:fontFamily": "@font/cookie_regular",
         "_android:text": "Valentine’s",
-        "_android:textAlignment": "center",
         "_android:textColor": "#FFE7E8",
-        "_android:textSize": "56pt"
+        "_android:textSize": "56dp"
+      },
+      {
+        "_android:id": "@+id/textView9",
+        "_android:layout_width": "wrap_content",
+        "_android:layout_height": "wrap_content",
+        "_android:layout_x": "129dp",
+        "_android:layout_y": "278dp",
+        "_android:fontFamily": "@font/metropolis_regular",
+        "_android:text": "DAY",
+        "_android:textColor": "#FFE7E8",
+        "_android:textSize": "17dp"
       }
     ],
     "_xmlns:android": "http://schemas.android.com/apk/res/android",
     "_xmlns:app": "http://schemas.android.com/apk/res-auto",
-    "_android:layout_width": "300pt",
-    "_android:layout_height": "300pt"
+    "_android:layout_width": "300dp",
+    "_android:layout_height": "300dp"
   }
 }
