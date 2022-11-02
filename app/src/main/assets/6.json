@@ -5,45 +5,45 @@
         "_android:id": "@+id/imageView8",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "91dp",
-        "_android:layout_y": "49dp",
+        "_android:layout_x": "44dp",
+        "_android:layout_y": "25dp",
         "_app:srcCompat": "@drawable/user"
       },
       {
         "_android:id": "@+id/imageView",
-        "_android:layout_width": "300dp",
+        "_android:layout_width": "200dp",
         "_android:layout_height": "300dp",
         "_app:srcCompat": "@drawable/bg"
       }
     ],
     "TextView": [
       {
-        "_android:id": "@+id/textView6",
-        "_android:layout_width": "wrap_content",
-        "_android:layout_height": "wrap_content",
-        "_android:layout_x": "61dp",
-        "_android:layout_y": "228dp",
-        "_android:fontFamily": "@font/cookie_regular",
-        "_android:text": "Valentine’s",
-        "_android:textColor": "#FFE7E8",
-        "_android:textSize": "56dp"
-      },
-      {
         "_android:id": "@+id/textView9",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "129dp",
-        "_android:layout_y": "278dp",
+        "_android:layout_x": "5dp",
+        "_android:layout_y": "184dp",
+        "_android:fontFamily": "@font/dancingscript_regular",
+        "_android:text": "Valentine’s Day",
+        "_android:textColor": "#FFFFFF",
+        "_android:textSize": "34dp"
+      },
+      {
+        "_android:id": "@+id/textView",
+        "_android:layout_width": "wrap_content",
+        "_android:layout_height": "wrap_content",
+        "_android:layout_x": "30dp",
+        "_android:layout_y": "228dp",
+        "_android:fontFamily": "@font/metropolis_extra_bold",
         "_android:tag": "otf",
-        "_android:fontFamily": "@font/metropolis_regular",
-        "_android:text": "DAY",
-        "_android:textColor": "#FFE7E8",
-        "_android:textSize": "17dp"
+        "_android:text": "LOVE",
+        "_android:textColor": "#FFFFFF",
+        "_android:textSize": "50dp"
       }
     ],
     "_xmlns:android": "http://schemas.android.com/apk/res/android",
     "_xmlns:app": "http://schemas.android.com/apk/res-auto",
-    "_android:layout_width": "300dp",
+    "_android:layout_width": "200dp",
     "_android:layout_height": "300dp"
   }
 }

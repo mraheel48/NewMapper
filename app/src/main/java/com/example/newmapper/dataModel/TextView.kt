@@ -52,7 +52,13 @@ data class TextView(
     val androidAlpha: String? = null,
 
     @JsonProperty("_app:autoSizeTextType")
-    val appAutoSizeTextType: String? = null
+    val appAutoSizeTextType: String? = null,
+
+    @JsonProperty("_android:tag")
+    val androidTag: String? = null,
+
+    @JsonProperty("_android:letterSpacing")
+    val androidLetterSpacing: String? = null,
 )
 
 

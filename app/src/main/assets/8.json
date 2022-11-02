@@ -5,8 +5,8 @@
         "_android:id": "@+id/imageView8",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "91dp",
-        "_android:layout_y": "49dp",
+        "_android:layout_x": "128dp",
+        "_android:layout_y": "121dp",
         "_app:srcCompat": "@drawable/user"
       },
       {
@@ -14,6 +14,14 @@
         "_android:layout_width": "300dp",
         "_android:layout_height": "300dp",
         "_app:srcCompat": "@drawable/bg"
+      },
+      {
+        "_android:id": "@+id/imageView2",
+        "_android:layout_width": "231dp",
+        "_android:layout_height": "28dp",
+        "_android:layout_x": "33dp",
+        "_android:layout_y": "72dp",
+        "_app:srcCompat": "@drawable/l_1"
       }
     ],
     "TextView": [
@@ -21,24 +29,25 @@
         "_android:id": "@+id/textView6",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "61dp",
-        "_android:layout_y": "228dp",
-        "_android:fontFamily": "@font/cookie_regular",
-        "_android:text": "Valentine’s",
-        "_android:textColor": "#FFE7E8",
-        "_android:textSize": "56dp"
+        "_android:layout_x": "7dp",
+        "_android:layout_y": "13dp",
+        "_android:fontFamily": "@font/sacramento_regular",
+        "_android:text": "Valentine’s Day!",
+        "_android:textColor": "#7A0C2D",
+        "_android:textSize": "48dp"
       },
       {
-        "_android:id": "@+id/textView9",
+        "_android:id": "@+id/textView7",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "129dp",
-        "_android:layout_y": "278dp",
+        "_android:layout_x": "51dp",
+        "_android:layout_y": "75dp",
+        "_android:fontFamily": "@font/metropolis_extra_bold",
+        "_android:letterSpacing": "0.2",
         "_android:tag": "otf",
-        "_android:fontFamily": "@font/metropolis_regular",
-        "_android:text": "DAY",
-        "_android:textColor": "#FFE7E8",
-        "_android:textSize": "17dp"
+        "_android:text": "SHARE YOUR LOVE",
+        "_android:textColor": "#FC6256",
+        "_android:textSize": "15dp"
       }
     ],
     "_xmlns:android": "http://schemas.android.com/apk/res/android",

@@ -5,8 +5,8 @@
         "_android:id": "@+id/imageView8",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "91dp",
-        "_android:layout_y": "49dp",
+        "_android:layout_x": "63dp",
+        "_android:layout_y": "91dp",
         "_app:srcCompat": "@drawable/user"
       },
       {
@@ -21,24 +21,24 @@
         "_android:id": "@+id/textView6",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "61dp",
-        "_android:layout_y": "228dp",
-        "_android:fontFamily": "@font/cookie_regular",
-        "_android:text": "Valentine’s",
-        "_android:textColor": "#FFE7E8",
-        "_android:textSize": "56dp"
+        "_android:layout_x": "80dp",
+        "_android:layout_y": "31dp",
+        "_android:fontFamily": "@font/metropolis_extra_bold",
+        "_android:tag": "otf",
+        "_android:text": "LOVE",
+        "_android:textColor": "#CE1A2D",
+        "_android:textSize": "50dp"
       },
       {
         "_android:id": "@+id/textView9",
         "_android:layout_width": "wrap_content",
         "_android:layout_height": "wrap_content",
-        "_android:layout_x": "129dp",
-        "_android:layout_y": "278dp",
-        "_android:tag": "otf",
-        "_android:fontFamily": "@font/metropolis_regular",
-        "_android:text": "DAY",
-        "_android:textColor": "#FFE7E8",
-        "_android:textSize": "17dp"
+        "_android:layout_x": "110dp",
+        "_android:layout_y": "7dp",
+        "_android:fontFamily": "@font/cookie_regular",
+        "_android:text": "Valentine’s",
+        "_android:textColor": "#CE1A2D",
+        "_android:textSize": "25dp"
       }
     ],
     "_xmlns:android": "http://schemas.android.com/apk/res/android",

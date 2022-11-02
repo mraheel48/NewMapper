@@ -8,10 +8,12 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.text.TextUtils.replace
 import android.util.Log
 import android.util.TypedValue
 import android.widget.RelativeLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.newmapper.dataModel.ImageView
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private var viewBoxHeight: Int = 720
 
     private var screenFactorValues: Double = 1.0
+    private var jsonFactorValues: Double = 1.0
     private var defaultScreenWidth: Int = 720
 
 
@@ -59,17 +62,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(mainBinding.root)
 
         mainBinding.root.post {
-            Log.e("myScreenWidth", "${mainBinding.root.width}")
-            defaultScreenWidth = mainBinding.root.width
+            Log.e("myScreenWidth", "${mainBinding.mainLayout.width}")
+            defaultScreenWidth = mainBinding.mainLayout.width
             viewBoxWidth = defaultScreenWidth
             viewBoxHeight = defaultScreenWidth
-
         }
 
         mainBinding.btnRead.setOnClickListener {
 
-
-            val jsonFile = loadJSONFromAsset("3.json")
+            val jsonFile = loadJSONFromAsset("9.json")
 
             if (jsonFile != null) {
 
@@ -87,9 +88,30 @@ class MainActivity : AppCompatActivity() {
 
                         val modelBaseNewWidth = it.replace("dp", "").toDouble()
 
+                        val modelBaseHeight: String =
+                            root.absoluteLayout.androidLayoutHeight?.replace("dp", "")?.toDouble()
+                                .toString()
+
                         screenFactorValues = defaultScreenWidth / modelBaseNewWidth
 
-                        Log.d("myBaseFactor", "${screenFactorValues}")
+                        if (modelBaseHeight.toDouble() != modelBaseNewWidth) {
+
+                            jsonFactorValues =
+                                modelBaseHeight.toDouble() / modelBaseNewWidth.toDouble()
+
+                            val finalRatio = "1:${jsonFactorValues}"
+
+                            val set = ConstraintSet()
+                            set.clone(mainBinding.mainRoot)
+                            set.setDimensionRatio(mainBinding.mainLayout.id, finalRatio)
+                            set.applyTo(mainBinding.mainRoot)
+                        }
+
+
+                        Log.d(
+                            "myBaseFactor",
+                            "${screenFactorValues}"
+                        )
 
                         if (root.absoluteLayout.imageView != null) {
                             root.absoluteLayout.imageView.forEachIndexed { index, imageView ->
@@ -343,22 +365,49 @@ class MainActivity : AppCompatActivity() {
                 modelTextAlpha.toFloat()
             }
 
+            val modelTextTag = "${textView.androidTag}"
+            val textViewTag: String? = if (modelTextTag == "null") {
+                null
+            } else {
+                modelTextTag
+            }
+
+            val modelTextLetterSpacing = "${textView.androidLetterSpacing}"
+            val textViewLetterSpacing: Float? = if (modelTextLetterSpacing == "null") {
+                null
+            } else {
+                modelTextLetterSpacing.toFloat()
+            }
+
             newText.text = textViewName
 
             textViewFontName?.let {
-                try {
-                    val typeface = Typeface.createFromAsset(assets, "font/${it}")
-                    newText.typeface = typeface
-                } catch (ex: java.lang.Exception) {
+
+                if (textViewTag != null) {
                     try {
                         val typeface =
-                            Typeface.createFromAsset(assets, "font/${it.replace("ttf", "otf")}")
+                            Typeface.createFromAsset(
+                                assets,
+                                "font/${it.replace("ttf", "${textViewTag}")}"
+                            )
+                        newText.typeface = typeface
+                        Log.d("myFontSet", "if calling")
+                    } catch (ex: java.lang.Exception) {
+                        ex.printStackTrace()
+                    }
+                } else {
+                    try {
+                        val typeface = Typeface.createFromAsset(assets, "font/${it}")
                         newText.typeface = typeface
                     } catch (ex: java.lang.Exception) {
-                        Log.d("myFontName", it)
+                        ex.printStackTrace()
                     }
                 }
 
+            }
+
+            textViewLetterSpacing?.let {
+                newText.letterSpacing = it
             }
 
             textViewColor?.let {
